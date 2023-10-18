@@ -20,30 +20,25 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     fetchData(input)
     
   }
 
-  async function postData(){
-    return await fetch('http://localhost:8000/output',{
-      method: "POST",
+  async function getData(){
+    return await fetch(`http://localhost:8000/input/${input}`,{
+      method: "GET",
         headers:{ "Content-Type": "application/json" },
-        body: JSON.stringify({"input":input})
-        
     })
   }
 
   const fetchData = (e) =>{
     //e.preventDefault();
-    postData().then(data=>{
-          fetch('http://localhost:8000/input')
+    getData()
           .then((response)=> response.json())
           .then((data)=>{
-            console.log(data)
             setBookData(data)
           })
-    });
+   
 
   }
   
