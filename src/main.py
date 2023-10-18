@@ -54,11 +54,14 @@ indices = pd.Series(data.index, index=data['title'])
 def combine(title):
     titleList = data['title'].tolist()
     title1= difflib.get_close_matches(title, titleList, n=1)
+   
     s = ''.join(title1)
     finalRecs = get_recommendations(s, cosine_sim2)
+    
     recsArray = finalRecs
     recsList = recsArray.tolist()
     return recsList
+
 
 
 

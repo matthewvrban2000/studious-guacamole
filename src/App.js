@@ -11,6 +11,11 @@ import { useRef, useState, useEffect,  } from "react";
 function App() {
   const [input, setInput] = useState("");
   const[bookData, setBookData] = useState([]);
+  const [showResults, setShowResults] = useState(false)
+  
+  const recDiv = () => {
+    <div>If you liked <i>{input}</i>, then you should try...</div>
+  }
   
   const inputref = useRef();
   
@@ -44,7 +49,9 @@ function App() {
   
   return (
     <>
-  <Navbar expand="lg" className="bg-body-tertiary"></Navbar>
+  <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="light">
+    RECOMMEND ME
+  </Navbar>
 
   <Container>
    <form  onSubmit={(e) => handleSubmit(e)}>
@@ -52,12 +59,15 @@ function App() {
       
         <Form.Label ref={inputref} ></Form.Label>
         <Form.Control type="text" placeholder="Enter a book!" onChange={ e => handleChange( e.target.value)}/>
-        <Form.Text className="text-muted"> Enter a book to get started </Form.Text>
+        <Form.Text className="text-muted"> Enter a book to get started! </Form.Text>
         <Button variant="primary" type="submit" onClick={(e) => console.log(e)}> Submit </Button>
       
       </Form.Group>
     </form>
-    <div>{bookData}</div>
+    <div>If you liked <i>{input}</i>, then you should try...</div>
+    <ul>
+      {bookData.map((el,i) => <li key={i}>{el}</li> )}
+    </ul>
     </Container>
    
     </>
