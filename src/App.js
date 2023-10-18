@@ -25,6 +25,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setShowResults(true)
     fetchData(input)
     
   }
@@ -49,9 +50,7 @@ function App() {
   
   return (
     <>
-  <Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="light">
-    RECOMMEND ME
-  </Navbar>
+  
 
   <Container>
    <form  onSubmit={(e) => handleSubmit(e)}>
@@ -64,7 +63,8 @@ function App() {
       
       </Form.Group>
     </form>
-    <div>If you liked <i>{input}</i>, then you should try...</div>
+    
+    {showResults && <div>If you liked <i>{input}</i>, then you should try...</div> }
     <ul>
       {bookData.map((el,i) => <li key={i}>{el}</li> )}
     </ul>
